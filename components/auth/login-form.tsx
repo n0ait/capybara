@@ -9,11 +9,10 @@ import { Label } from "@/components/ui/label"
 import { Icons } from "@/components/icons"
 import { Loader2 } from "lucide-react"
 import { LoginButton } from "./login-button"
-import { useRouter } from "next/navigation"
 
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface LoginFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
+export const LoginForm = ({ className, ...props }: LoginFormProps) => {
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
 
   async function onSubmit(event: React.SyntheticEvent) {
@@ -44,7 +43,10 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             />
           </div>
           <LoginButton>
-            <Button disabled={isLoading}>
+            <Button 
+              disabled={isLoading}
+              variant={"full"}
+            >
               {isLoading && (
                 <Loader2 className="mr-2 h-4 w-4 animate-spin"/>
               )}
