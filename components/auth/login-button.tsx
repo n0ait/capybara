@@ -21,14 +21,15 @@ export const LoginButton = ({
 
   if (mode === "modal") {
     return (
-      "TODO"
+      <span>
+        TODO: Implement modal
+      </span>
     )
   }
 
-
   return (
-    <span onClick={onClick} className="cursor-pointer w-full block">
-        {children}
+    <span onClick={onClick} className="cursor-pointer">
+      {children}
     </span>
-  )
-}
+  );
+};

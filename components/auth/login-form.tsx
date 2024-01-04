@@ -1,78 +1,96 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as z from "zod";
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Icons } from "@/components/icons"
-import { Loader2 } from "lucide-react"
-import { LoginButton } from "./login-button"
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-interface LoginFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+import { LoginSchema } from "@/schemas";
+import { Input } from "@/components/ui/input";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,  
+} from "@/components/ui/form";
+import { CardWrapper } from "@/components/auth/card-wrapper"
+import { Button } from "@/components/ui/button";
+import { FormError } from "@/components/form-error";
+import { FormSuccess } from "@/components/form-success";
 
-export const LoginForm = ({ className, ...props }: LoginFormProps) => {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false)
+export const LoginForm = () => {
+  const form = useForm<z.infer<typeof LoginSchema>>({
+    resolver: zodResolver(LoginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
 
-  async function onSubmit(event: React.SyntheticEvent) {
-    event.preventDefault()
-    setIsLoading(true)
-
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 3000)
+  const onSubmit = (values: z.infer<typeof LoginSchema>) => {
+    console.log(values);
   }
 
   return (
-    <div className={cn("grid gap-6", className)} {...props}>
-      <form onSubmit={onSubmit}>
-        <div className="grid gap-2">
-          <div className="grid gap-1">
-            <Label className="sr-only" htmlFor="email">
-              E-mail
-            </Label>
-            <Input
-              id="email"
-              placeholder="nom@exemple.com"
-              type="email"
-              autoCapitalize="none"
-              autoComplete="email"
-              autoCorrect="off"
-              disabled={isLoading}
+    <CardWrapper
+      headerLabel="Entrez votre e-mail pour vous connecter"
+      backButtonLabel="Pas de compte?"
+      backButtonHref="/auth/register"
+      showSocial
+    >
+      <Form {...form}>
+        <form 
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-6"
+        >
+          <div className="space-y-4">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder="john.doe@example.com"
+                      type="email"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Mot de passe</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder="******"
+                      type="password"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
           </div>
-          <LoginButton>
-            <Button 
-              disabled={isLoading}
-              variant={"full"}
-            >
-              {isLoading && (
-                <Loader2 className="mr-2 h-4 w-4 animate-spin"/>
-              )}
-              Se connecter avec E-mail
-            </Button>
-          </LoginButton>
-        </div>
-      </form>
-      <div className="relative">
-        <div className="absolute inset-0 flex items-center">
-          <span className="w-full border-t" />
-        </div>
-        <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-background px-2 text-muted-foreground">
-            Ou continuer avec
-          </span>
-        </div>
-      </div>
-      <Button variant="outline" type="button" disabled={isLoading}>
-        {isLoading ? (
-            <Loader2 className="mr-2 h-4 w-4 animate-spin"/>
-        ) : (
-          <Icons.microsoft className="mr-2 h-4 w-4" />
-        )}{" "}
-        Microsoft
-      </Button>
-    </div>
-  )
-}
+          <FormError message="" />
+          <FormSuccess message="" />
+          <Button
+            type="submit"
+            className="w-full"
+          >
+            Se connecter
+          </Button>
+        </form>
+      </Form>
+    </CardWrapper>
+  );
+};
