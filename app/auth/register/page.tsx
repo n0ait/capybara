@@ -1,28 +1,28 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { Command } from "lucide-react"
+import { Metadata } from "next";
+import Link from "next/link";
+import { Command } from "lucide-react";
 
-import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
-import { LoginForm } from "@/components/auth/login-form"
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
+import { RegisterForm } from "@/components/auth/register-form";
 
 export const metadata: Metadata = {
-  title: "Connexion",
-  description: "Se connecter à Capybara.",
+  title: "Inscription",
+  description: "S'inscrire sur Capybara.",
 }
 
-const LoginPage = () => {
+const RegisterPage = () => {
   return (
     <>
       <div className="container relative h-[100vh] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
         <Link
-          href="/auth/register"
+          href="/auth/login"
           className={cn(
             buttonVariants({ variant: "ghost", size: "sm" }),
             "absolute right-4 top-4 md:right-8 md:top-8"
           )}
         >
-          Pas de compte ?
+          Déjà un compte ?
         </Link>
         <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
           <div
@@ -49,7 +49,7 @@ const LoginPage = () => {
         </div>
         <div className="lg:p-8">
           <div className="mx-auto flex h-full w-full flex-col justify-center space-y-6 sm:w-[350px]">
-            <LoginForm />
+            <RegisterForm />
             <p className="px-8 text-center text-sm text-muted-foreground">
               En continuant, vous acceptez{" "}
               <Link
@@ -74,4 +74,4 @@ const LoginPage = () => {
   )
 }
 
-export default LoginPage;
+export default RegisterPage;
