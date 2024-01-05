@@ -1,11 +1,22 @@
 import type { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import AzureAd from "next-auth/providers/azure-ad";
+import Github from "next-auth/providers/github";
 import { LoginSchema } from "./schemas";
 import { getUserByMail } from "./data/users";
 import bycrypt from "bcryptjs";
 
 export default {
   providers: [
+    Github({
+      clientId: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET
+    }),
+    AzureAd({
+      clientId: process.env.AZURE_CLIENT_ID,
+      tenantId: process.env.AZURE_TENANT_ID,
+      clientSecret: process.env.AZURE_CLIENT_SECRET
+    }),
     Credentials({
       async authorize(credentials){
         const validatedFields = LoginSchema.safeParse(credentials);

@@ -1,12 +1,17 @@
 "use client";
 
-import { FcGoogle } from "react-icons/fc";
 import { Icons } from "@/components/icons";
-
 import { Button } from "@/components/ui/button";
+import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
+import { signIn } from "next-auth/react";
 
 
 export const Social = () => {
+  const providerSignIn = (provider: "azure-ad" | "github") => {
+    signIn(provider, {
+      callbackUrl: DEFAULT_LOGIN_REDIRECT
+    })
+  }
   return (
     <div className="w-full flex flex-col space-y-4">
       <div className="relative">
@@ -24,16 +29,16 @@ export const Social = () => {
           size="lg"
           className="w-full"
           variant="outline"
-          onClick={() => {}}
+          onClick={() => providerSignIn("github")}
         >
-          <FcGoogle className="h-5 w-5 mr-2" />
-          Google
+          <Icons.gitHub className="h-5 w-5 mr-2" />
+          Github
         </Button>
         <Button
           size="lg"
           className="w-full"
           variant="outline"
-          onClick={() => {}}
+          onClick={() => providerSignIn("azure-ad")}
         >
           <Icons.microsoft className="h-5 w-5 mr-2" />
           Microsoft
