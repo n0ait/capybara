@@ -47,8 +47,8 @@ const RegisterPage = () => {
           </div>
           */}
         </div>
-        <div className="lg:p-8">
-          <div className="mx-auto flex h-full w-full flex-col justify-center space-y-6 sm:w-[350px]">
+        <div className="lg:p-8 h-full">
+          <div className="mx-auto flex h-full w-full flex-col justify-center items-center space-y-6 sm:w-[400px]">
             <RegisterForm />
             <p className="px-8 text-center text-sm text-muted-foreground">
               En continuant, vous acceptez{" "}
