@@ -5,7 +5,8 @@ import { LoginSchema } from "@/schemas";
 import { signIn } from "@/auth";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { AuthError } from "next-auth";
-import { error } from "console";
+import { generateVerificationToken } from "@/lib/token";
+import { getUserByMail } from "@/data/users";
 
 export const login = async (values: z.infer<typeof LoginSchema>) => {
     const validateFields = LoginSchema.safeParse(values);
@@ -15,6 +16,18 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     }
 
     const { email, password } = validateFields.data;
+
+    const existingUser = await getUserByMail(email);
+
+    if(!existingUser || !existingUser.email || !existingUser.password){
+      return { error: "Indentifiants invalides !" }
+    }
+
+    if(!existingUser.emailVerified){
+      const verificationToken = generateVerificationToken(existingUser.email);
+
+      return { success: "Un mail de vérification vous a été envoyé !" }
+    }
 
     try{
       await signIn("credentials", {

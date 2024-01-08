@@ -11,7 +11,32 @@ export const {
   signIn,
   signOut
 } = NextAuth({
+  pages: {
+    signIn: "/auth/login",
+    error: "/auth/error"
+  },
+  events: {
+    async linkAccount({user}){
+      await db.user.update({
+        where: { id: user.id },
+        data: { emailVerified: new Date() }
+      })
+    }
+  },
   callbacks: {
+    async signIn({ user, account }){
+      // Si l'utilisateur se log via Oauth
+      if(account?.provider === "credentials") return true;
+
+      const existingUser = await getUserById(user.id);
+
+      // Si l'utilisateur se connecte mais n'a pas verifier son e-mail
+      if(!existingUser?.emailVerified) return false;
+
+      //TODO: Ajouter 2FA
+
+      return true;
+    }, 
     async session({ session, token }){
       if(token.sub && session.user){ //sub = id user
         session.user.id = token.sub;
