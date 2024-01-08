@@ -2,7 +2,7 @@ import type { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import AzureAd from "next-auth/providers/azure-ad";
 import Github from "next-auth/providers/github";
-import { LoginSchema } from "./schemas";
+import { LoginSchema } from "./schemas/auth";
 import { getUserByMail } from "./data/users";
 import bycrypt from "bcryptjs";
 

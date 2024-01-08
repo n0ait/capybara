@@ -1,7 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 
-// Pour éviter de génerer une connexion à chaque hotreload !
-
+// Global pour éviter de génerer une connexion à chaque hotreload !
 declare global {
   var prisma: PrismaClient | undefined;
 }
