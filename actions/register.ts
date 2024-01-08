@@ -6,6 +6,7 @@ import bycrpt from "bcryptjs";
 import { db } from "@/lib/db";
 import { getUserByMail } from "@/data/users";
 import { generateVerificationToken } from "@/lib/token";
+import { sendVerificationEmail } from "@/lib/mail";
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
   const validateFields = RegisterSchema.safeParse(values);
@@ -31,9 +32,12 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
     }
   });
 
-  const verificationToken = generateVerificationToken(email);
+  const verificationToken = await generateVerificationToken(email);
 
-  //TODO: send verification email
+  await sendVerificationEmail(
+    verificationToken.email, 
+    verificationToken.token
+  );
 
   return { success: "Un mail de vérification vous a été envoyé !" }
 }
