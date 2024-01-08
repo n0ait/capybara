@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-
-import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
 
 interface BackButtonProps {
   href: string;
@@ -14,15 +14,14 @@ export const BackButton = ({
   label,
 }: BackButtonProps) => {
   return (
-    <Button
-      variant="link"
-      className="font-normal w-full"
-      size="sm"
-      asChild
+    <Link
+      href={href}
+      className={cn(
+        buttonVariants({ variant: "ghost", size: "sm" }),
+        "absolute right-4 top-4 md:right-8 md:top-8"
+      )}
     >
-      <Link href={href}>
-        {label}
-      </Link>
-    </Button>
+      {label}
+  </Link>
   );
 };

@@ -22,6 +22,7 @@ import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 import { login } from "@/actions/login";
+import { HashLoader } from "react-spinners";
 
 export const LoginForm = () => {
   const searchParams = useSearchParams();
@@ -65,9 +66,10 @@ export const LoginForm = () => {
     <CardWrapper
       headerTitle="Connexion"
       headerLabel="Entrez votre e-mail pour vous connecter"
-      backButtonLabel="Pas de compte?"
+      backButtonLabel="Pas de compte ?"
       backButtonHref="/auth/register"
       showSocial
+      showLegals
     >
       <Form {...form}>
         <form 
@@ -119,7 +121,14 @@ export const LoginForm = () => {
             type="submit"
             className="w-full"
           >
-            Se connecter
+            {!isPending && (
+                "Se connecter"
+              )
+            }
+
+            {isPending && (
+              <HashLoader color="#fff" size={20} />
+            )}
           </Button>
         </form>
       </Form>

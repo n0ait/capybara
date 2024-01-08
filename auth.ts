@@ -3,7 +3,7 @@ import { UserRole } from "@prisma/client";
 import { db } from "./lib/db";
 import { getUserById } from "./data/users";
 import authConfig from "./auth.config";
-import NextAuth, { type DefaultSession} from "next-auth";
+import NextAuth from "next-auth";
 
 export const {
   handlers: { GET, POST },
