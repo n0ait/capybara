@@ -1,8 +1,8 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { UserRole } from "@prisma/client";
-import { db } from "./lib/db";
-import { getUserById } from "./data/users";
-import authConfig from "./auth.config";
+import { db } from "@/lib/db";
+import { getUserById } from "@/data/users";
+import authConfig from "@/auth.config";
 import NextAuth from "next-auth";
 
 export const {
@@ -16,7 +16,7 @@ export const {
     error: "/auth/error"
   },
   events: {
-    async linkAccount({user}){
+    async linkAccount({ user }){
       await db.user.update({
         where: { id: user.id },
         data: { emailVerified: new Date() }
@@ -26,7 +26,7 @@ export const {
   callbacks: {
     async signIn({ user, account }){
       // Si l'utilisateur se log via Oauth
-      if(account?.provider === "credentials") return true;
+      if(account?.provider !== "credentials") return true;
 
       const existingUser = await getUserById(user.id);
 
