@@ -12,6 +12,7 @@ const SettingsPage = () => {
     <div>
       {JSON.stringify(user)}
       <br />
+      {/* TODO fix user null */}
         <Societes user={user} />
       <form>
         <button type="submit">Deconnexion</button>
