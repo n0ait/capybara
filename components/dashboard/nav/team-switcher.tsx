@@ -41,10 +41,10 @@ import {
 
 const groups = [
   {
-    label: "Comptes",
+    label: "Bureaux",
     teams: [
       {
-        label: "Noé DUBOSQ",
+        label: "Cesson",
         value: "personal",
       },
     ],
@@ -104,7 +104,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
           <Command>
             <CommandList>
               <CommandInput placeholder="Une société..." />
-              <CommandEmpty>No team found.</CommandEmpty>
+              <CommandEmpty>Aucun résultat.</CommandEmpty>
               {groups.map((group) => (
                 <CommandGroup key={group.label} heading={group.label}>
                   {group.teams.map((team) => (

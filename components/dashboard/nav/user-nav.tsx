@@ -14,8 +14,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { logout } from "@/actions/logout";
-import { useSession } from "next-auth/react";
 import { LogoutButton } from "@/components/auth/logout-button";
 import { useCurrentUser } from "@/hooks/use-current-user";
 
@@ -58,16 +56,16 @@ export const UserNav = () => {
           </DropdownMenuItem>
           <DropdownMenuItem>
             <PlusCircle className="mr-2 h-4 w-4" />
-            <span>Nouvelle société</span>
+            <span>Nouveau membre</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <LogoutButton>
           <DropdownMenuItem>
+            <LogoutButton>
             <LogOut className="mr-2 h-4 w-4" />
             <span>Déconnexion</span>
+            </LogoutButton>
           </DropdownMenuItem>
-        </LogoutButton>
       </DropdownMenuContent>
     </DropdownMenu>
   )

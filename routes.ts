@@ -3,7 +3,6 @@
 * @type {string[]}
 */
 export const publicRoutes = [
-  "/",
   "/auth/new-verification"
 ];
 
@@ -31,7 +30,7 @@ export const apiAuthPrefix = "/api/auth";
 * Route de redirection après une authentification réussie
 * @type {string}
 */
-export const DEFAULT_LOGIN_REDIRECT = "/settings";
+export const DEFAULT_LOGIN_REDIRECT = "/accueil";
 
 /**
 * Route d'authentification

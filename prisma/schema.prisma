@@ -13,6 +13,10 @@ datasource db {
 
 enum UserRole {
   ADMIN
+  EXPERT
+  CAC
+  COMPTABLE
+  ASSISTANT
   USER
 }
 
@@ -25,6 +29,7 @@ model User {
   password      String?
   role          UserRole @default(USER)
   accounts      Account[]
+  societes      SocieteUser[]
 }
 
 model Account {
@@ -53,4 +58,31 @@ model VerificationToken {
   expires DateTime
 
   @@unique([email, token])
+}
+
+model Societe {
+  id        String @id @default(cuid())
+  name      String
+  bureauId  String?
+  user      SocieteUser[]
+
+  bureau Bureau? @relation(fields: [bureauId], references: [id], onDelete: Cascade)
+}
+
+model SocieteUser {
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String
+  societe     Societe @relation(fields: [societeId], references: [id])
+  societeId   String
+  assignedAt  DateTime @default(now())
+  assignedBy  String
+
+  @@id([userId, societeId])
+}
+
+model Bureau {
+  id      String @id @default(cuid())
+  name    String
+  city    String
+  societes Societe[]
 }

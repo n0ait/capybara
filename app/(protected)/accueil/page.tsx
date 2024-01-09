@@ -1,14 +1,18 @@
 "use client";
 
 import { useCurrentUser } from '@/hooks/use-current-user';
-import { useSession } from 'next-auth/react';
+import { getUserSocietes } from '@/data/users';
+import Societes from '@/components/dashboard/societes';
 
 const SettingsPage = () => {
   const user = useCurrentUser();
+  
+  
   return ( 
     <div>
       {JSON.stringify(user)}
-
+      <br />
+        <Societes user={user} />
       <form>
         <button type="submit">Deconnexion</button>
       </form>

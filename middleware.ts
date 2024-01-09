@@ -7,6 +7,7 @@ import {
   authRoutes,
   publicRoutes
 } from "@/routes";
+import { useSession } from "next-auth/react";
 
 const { auth } = NextAuth(authConfig);
 
@@ -19,7 +20,7 @@ export default auth((req) => {
 
   if(isApiAuthRoute) {
     return null;
-  } 
+  }
 
   if(isAuthRoute) {
     if(isLoggedIn){

@@ -16,7 +16,7 @@ const AuthLayout = ({
 
   return (
     <>
-      <div className="hidden flex-col md:flex">
+      <div className="flex flex-col">
         <div className="border-b">
           <div className="flex h-16 items-center px-4">
             <TeamSwitcher />
@@ -29,7 +29,9 @@ const AuthLayout = ({
         </div>
         <div className="flex-1 space-y-4 p-8 pt-6">
           <div className="flex items-center justify-between space-y-2">
-            <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
+            <h2 className="text-3xl font-bold tracking-tight">
+              Dashboard
+            </h2>
             <div className="flex items-center space-x-2">
               <CalendarDateRangePicker />
               <Button size="sm">
@@ -39,7 +41,9 @@ const AuthLayout = ({
           </div>
         </div>
       </div>
-      {children}
+      <div className="p-8 pt-2">
+        {children}
+      </div>
     </>
   )
 };
