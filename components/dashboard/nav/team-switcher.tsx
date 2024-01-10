@@ -41,10 +41,10 @@ import {
 
 const groups = [
   {
-    label: "Bureaux",
+    label: "Comptes",
     teams: [
       {
-        label: "Cesson",
+        label: "Noé DUBOSQ",
         value: "personal",
       },
     ],
@@ -104,7 +104,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
           <Command>
             <CommandList>
               <CommandInput placeholder="Une société..." />
-              <CommandEmpty>Aucun résultat.</CommandEmpty>
+              <CommandEmpty>No team found.</CommandEmpty>
               {groups.map((group) => (
                 <CommandGroup key={group.label} heading={group.label}>
                   {group.teams.map((team) => (
@@ -148,7 +148,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
                     }}
                   >
                     <PlusCircle className="mr-2 h-5 w-5" />
-                    Nouvelle société
+                    Nouvelle
                   </CommandItem>
                 </DialogTrigger>
               </CommandGroup>

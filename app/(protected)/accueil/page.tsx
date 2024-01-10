@@ -1,24 +1,21 @@
-"use client";
+import { getSocietesByUser } from "@/data/societes";
+import { currentUser } from "@/lib/auth";
 
-import { useCurrentUser } from '@/hooks/use-current-user';
-import { getUserSocietes } from '@/data/users';
-import Societes from '@/components/dashboard/societes';
+const AccueilPage = async () => {
+  const user = await currentUser();
 
-const SettingsPage = () => {
-  const user = useCurrentUser();
-  
-  
+  if(!user){
+    return {error: "Une erreur est survenue"};
+  }
+
+  const societes = await getSocietesByUser(user?.id);
+
   return ( 
     <div>
       {JSON.stringify(user)}
-      <br />
-      {/* TODO fix user null */}
-        <Societes user={user} />
-      <form>
-        <button type="submit">Deconnexion</button>
-      </form>
+      {JSON.stringify(societes)}
     </div>
    );
 }
  
-export default SettingsPage;
+export default AccueilPage;
