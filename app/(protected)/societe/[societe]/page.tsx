@@ -1,15 +1,15 @@
 import { getSocieteById } from "@/data/societes";
 
 const PageSocieteId = async ({
-  params: { societeId },
+  params: { societe },
 }: {
-  params: { societeId: string }
+  params: { societe: string }
 }) => {
 
 
-  const societe = await getSocieteById(societeId);
+  const societeData = await getSocieteById(societe);
  
-  if(!societe) {
+  if(!societeData) {
     return (
       <>
         <p>Cette societé n`&apos;`existe pas...</p>
@@ -19,8 +19,8 @@ const PageSocieteId = async ({
 
   return (
     <>
-      <p>{societeId}</p>
-      {JSON.stringify(societe)}
+      <p>{societe}</p>
+      {JSON.stringify(societeData)}
     </>
   );
 }
