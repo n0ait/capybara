@@ -7,7 +7,6 @@ import {
   authRoutes,
   publicRoutes
 } from "@/routes";
-import { useSession } from "next-auth/react";
 
 const { auth } = NextAuth(authConfig);
 

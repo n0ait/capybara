@@ -1,40 +1,49 @@
+'use client';
+
 import Link from "next/link";
+import clsx from 'clsx';
 
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 export function MainNav({
   className,
   ...props
 }: React.HTMLAttributes<HTMLElement>) {
+  const pathname = usePathname();
+
+  const links = [
+    {
+      label: "Accueil",
+      href: "/societe"
+    },
+    {
+      label: "Clients",
+      href: "/clients"
+    }
+  ]
+
   return (
     <nav
       className={cn("flex items-center space-x-4 lg:space-x-6", className)}
       {...props}
     >
-      <Link
-        href="#"
-        className="text-sm font-medium transition-colors hover:text-primary"
-      >
-        Accueil
-      </Link>
-      <Link
-        href="#"
-        className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-      >
-        Clients
-      </Link>
-      <Link
-        href="#"
-        className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-      >
-        Banques
-      </Link>
-      <Link
-        href="#"
-        className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-      >
-        Factures
-      </Link>
+      {links.map((link) => {
+        return (
+          <Link
+          key={link.label}
+          href={link.href}
+          className={clsx(
+            'text-sm transition-colors hover:text-primary',
+            {
+              'font-medium': pathname === link.href,
+            },
+          )}
+        >
+          {link.label}
+        </Link>
+        )
+      })}
     </nav>
   )
 }

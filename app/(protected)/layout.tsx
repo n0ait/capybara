@@ -4,22 +4,27 @@ import { Button } from "@/components/ui/button";
 import { MainNav } from "@/components/dashboard/nav/main-nav";
 import { UserNav } from "@/components/dashboard/nav/user-nav";
 import { Search } from "@/components/dashboard/nav/search";
-import TeamSwitcher from "@/components/dashboard/nav/team-switcher";
+import TeamSwitcher from "@/components/dashboard/nav/societes-switcher";
 import { CalendarDateRangePicker } from "@/components/dashboard/utils/calendar-date-range-picker";
 import { UpdateIcon } from "@radix-ui/react-icons";
 
-const AuthLayout = ({ 
+import { getSocietesByUser } from "@/data/societes";
+
+const AuthLayout =  async ({ 
   children
 }: { 
   children: React.ReactNode
 }) => { 
+
+  const societes = await getSocietesByUser();
+  if(!societes) return "error";
 
   return (
     <>
       <div className="flex flex-col">
         <div className="border-b">
           <div className="flex h-16 items-center px-4">
-            <TeamSwitcher />
+            <TeamSwitcher societes={societes} />
             <MainNav className="mx-6" />
             <div className="ml-auto flex items-center space-x-4">
               <Search />

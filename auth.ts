@@ -49,7 +49,6 @@ export const {
 
       return session;
     },
-
     async jwt({ token }){
       if(!token.sub) return token; //sub = id user
 

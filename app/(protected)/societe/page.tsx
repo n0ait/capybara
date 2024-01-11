@@ -8,12 +8,9 @@ const AccueilPage = async () => {
     return {error: "Une erreur est survenue"};
   }
 
-  const societes = await getSocietesByUser(user?.id);
-
   return ( 
     <div>
       {JSON.stringify(user)}
-      {JSON.stringify(societes)}
     </div>
    );
 }

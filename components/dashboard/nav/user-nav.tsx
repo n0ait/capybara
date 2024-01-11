@@ -1,6 +1,6 @@
 "use client";
 
-import { CreditCard, LogOut, PlusCircle, Settings, User } from "lucide-react";
+import { LogOut, Settings, User } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -46,17 +46,9 @@ export const UserNav = () => {
             <User className="mr-2 h-4 w-4" />
             <span>Profil</span>
           </DropdownMenuItem>
-          {/* <DropdownMenuItem>
-            <CreditCard className="mr-2 h-4 w-4" />
-            <span>Facturation</span>
-          </DropdownMenuItem> */}
           <DropdownMenuItem>
             <Settings className="mr-2 h-4 w-4" />
             <span>Paramètres</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <PlusCircle className="mr-2 h-4 w-4" />
-            <span>Nouveau membre</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />

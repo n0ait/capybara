@@ -30,7 +30,7 @@ export const apiAuthPrefix = "/api/auth";
 * Route de redirection après une authentification réussie
 * @type {string}
 */
-export const DEFAULT_LOGIN_REDIRECT = "/accueil";
+export const DEFAULT_LOGIN_REDIRECT = "/societe";
 
 /**
 * Route d'authentification
