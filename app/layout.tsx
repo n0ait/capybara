@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: 'https://capybara-omega.vercel.app/og-image.png',
+        url: 'https://capybara-omega.vercel.app/favicon.ico',
         width: 800,
         height: 600,
       },
