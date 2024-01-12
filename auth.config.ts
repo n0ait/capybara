@@ -15,7 +15,8 @@ export default {
     AzureAd({
       tenantId: process.env.AZURE_TENANT_ID,
       clientId: process.env.AZURE_CLIENT_ID,
-      clientSecret: process.env.AZURE_CLIENT_SECRET
+      clientSecret: process.env.AZURE_CLIENT_SECRET,
+      authorization: { params: { scope: "openid profile User.Read email" } },
     }),
     Credentials({
       async authorize(credentials){
