@@ -16,10 +16,6 @@ export function MainNav({
     {
       label: "Accueil",
       href: "/societe"
-    },
-    {
-      label: "Clients",
-      href: "/clients"
     }
   ]
 

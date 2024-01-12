@@ -1,7 +1,7 @@
 import { CalendarDateRangePicker } from "@/components/dashboard/utils/calendar-date-range-picker";
 import { UpdateIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
-
+import { currentUser } from "@/lib/auth";
 
 const SocieteLayout = ({ 
   children

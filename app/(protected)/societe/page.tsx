@@ -10,7 +10,9 @@ const AccueilPage = async () => {
 
   return ( 
     <div>
-      {JSON.stringify(user)}
+      <h2 className={"text-2xl font-medium tracking-tight"}>
+        Bienvenue, {user.name}.
+      </h2>
     </div>
    );
 }

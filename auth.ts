@@ -26,7 +26,6 @@ export const {
   },
   callbacks: {
     async signIn({ user, account }){
-      console.log("User:", user);
 
       // Si l'utilisateur se log via Oauth
       if(account?.provider !== "credentials") return true;
