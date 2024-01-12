@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Capybara',
-  description: 'Capybara project',
+  description: 'Capybara project'
 }
 
 export default async function RootLayout({
@@ -22,6 +22,7 @@ export default async function RootLayout({
   return (
     <SessionProvider session={session}>
       <html lang="fr">
+        <meta property="og:image" content="/favicon.ico" />
         <body className={ cn(
             "antialiased font-sans",
             inter.className
