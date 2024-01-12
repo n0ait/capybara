@@ -4,14 +4,19 @@ import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
 
 
 export const Social = () => {
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl");
+
   const providerSignIn = (provider: "azure-ad" | "github") => {
     signIn(provider, {
-      callbackUrl: DEFAULT_LOGIN_REDIRECT
+      callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT
     })
   }
+
   return (
     <div className="w-full flex flex-col space-y-4">
       <div className="relative">

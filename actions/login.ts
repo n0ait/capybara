@@ -9,7 +9,10 @@ import { generateVerificationToken } from "@/lib/token";
 import { getUserByMail } from "@/data/users";
 import { sendVerificationEmail } from "@/lib/mail";
 
-export const login = async (values: z.infer<typeof LoginSchema>) => {
+export const login = async (
+  values: z.infer<typeof LoginSchema>,
+  callbackUrl?: string | null
+  ) => {
     const validateFields = LoginSchema.safeParse(values);
 
     if(!validateFields.success){
@@ -36,10 +39,16 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     }
 
     try{
+      let redirect = DEFAULT_LOGIN_REDIRECT;
+
+      if(existingUser.lastSociete){
+        redirect = `/societe/${existingUser.lastSociete}`;  
+      };
+
       await signIn("credentials", {
         email,
         password,
-        redirectTo: DEFAULT_LOGIN_REDIRECT
+        redirectTo: callbackUrl || redirect 
       })
     } catch (error) {
       if(error instanceof AuthError){

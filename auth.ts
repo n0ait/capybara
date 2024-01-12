@@ -4,6 +4,7 @@ import { db } from "@/lib/db";
 import { getUserById } from "@/data/users";
 import authConfig from "@/auth.config";
 import NextAuth from "next-auth";
+import { Session } from "next-auth/types";
 
 export const {
   handlers: { GET, POST },
@@ -26,7 +27,7 @@ export const {
   callbacks: {
     async signIn({ user, account }){
       console.log("User:", user);
-      
+
       // Si l'utilisateur se log via Oauth
       if(account?.provider !== "credentials") return true;
 
@@ -47,7 +48,6 @@ export const {
       if(token.role && session.user){
         session.user.role = token.role as UserRole;
       }
-
 
       return session;
     },
