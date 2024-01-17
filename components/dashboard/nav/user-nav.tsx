@@ -52,12 +52,12 @@ export const UserNav = () => {
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            <LogoutButton>
-            <LogOut className="mr-2 h-4 w-4" />
-            <span>Déconnexion</span>
-            </LogoutButton>
+        <LogoutButton>
+          <DropdownMenuItem className="cursor-pointer">
+              <LogOut className="mr-2 h-4 w-4" />
+              <span>Déconnexion</span>
           </DropdownMenuItem>
+        </LogoutButton>
       </DropdownMenuContent>
     </DropdownMenu>
   )

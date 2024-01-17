@@ -14,7 +14,7 @@ export const LogoutButton = ({
   };
 
   return (
-    <span onClick={onClick} className="cursor-pointer flex">
+    <span onClick={onClick}>
       {children}
     </span>
   );

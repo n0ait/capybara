@@ -45,7 +45,7 @@ export default function TeamSwitcher({
     <Popover open={open} onOpenChange={setOpen}>
     <PopoverTrigger asChild>
       <Button
-        variant="outline"
+        variant="ghost"
         size="sm"
         role="combobox"
         aria-expanded={open}

@@ -11,14 +11,21 @@ export const metadata: Metadata = {
   title: 'Capybara',
   description: 'Capybara project',
   openGraph: {
+    siteName: 'Capybara',
     images: [
       {
         url: 'https://capybara-omega.vercel.app/favicon.ico',
         width: 800,
         height: 600,
       },
-    ]
-  }
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Capybara',
+    description: 'The capybara project',
+    images: ['https://capybara-omega.vercel.app/favicon.ico'],
+  },
 }
 
 export default async function RootLayout({

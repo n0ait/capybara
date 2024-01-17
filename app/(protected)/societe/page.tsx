@@ -1,18 +1,15 @@
+import { SocieteDataTable } from "@/components/dashboard/societe/societe-table";
 import { getSocietesByUser } from "@/data/societes";
-import { currentUser } from "@/lib/auth";
 
 const AccueilPage = async () => {
-  const user = await currentUser();
+  const societes = await getSocietesByUser();
+  if(!societes) return "error";
 
-  if(!user){
-    return {error: "Une erreur est survenue"};
-  }
+  const societe = societes[0];
 
   return ( 
-    <div>
-      <h2 className={"text-2xl font-medium tracking-tight"}>
-        Bienvenue, {user.name}.
-      </h2>
+    <div className="w-3/4 mx-auto px-6">
+      <SocieteDataTable />
     </div>
    );
 }
