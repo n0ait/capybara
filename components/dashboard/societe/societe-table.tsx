@@ -89,6 +89,41 @@ const data: Payment[] = [
     name: "PRET AIDE 4",
     debit: 9160000,
     credit: 9160000,
+  },
+  {
+    id: "m5gr54y9",
+    number: 101300000,
+    name: "PRET AIDE 3",
+    debit: 160000,
+    credit: 160000,
+  },
+  {
+    id: "m5yr34y8",
+    number: 101400000,
+    name: "PRET AIDE 4",
+    debit: 9160000,
+    credit: 9160000,
+  },
+  {
+    id: "m1gz84i8",
+    number: 101400000,
+    name: "PRET AIDE 2",
+    debit: 9160000,
+    credit: 9160000,
+  },
+  {
+    id: "m2hr84y9",
+    number: 101300000,
+    name: "PRET AIDE 3",
+    debit: 160000,
+    credit: 160000,
+  },
+  {
+    id: "m9gr84p8",
+    number: 101400000,
+    name: "PRET AIDE 4",
+    debit: 9160000,
+    credit: 9160000,
   }
 ]
 
