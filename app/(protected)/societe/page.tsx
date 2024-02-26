@@ -8,7 +8,7 @@ const AccueilPage = async () => {
   const societe = societes[0];
 
   return ( 
-    <div className="w-3/4 mx-auto px-6">
+    <div className="w-full mx-auto px-6">
       <SocieteDataTable />
     </div>
    );
